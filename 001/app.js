@@ -61,9 +61,6 @@ console.log('------2-----');
 
 console.log([...Array(3)].map(_ => Math.floor(Math.random() * 25)));
 
-
-
-
 //kaip palyginti reiksmes? kaip jas issivesti i const?
 
 console.log('------3-----');
@@ -87,4 +84,16 @@ function checkValidity(krastine, krastine2, krastine3)
         return `Galima sudaryti trikampį`;
 }
 console.log(checkValidity(krastine, krastine2, krastine3));
+
+console.log('------4-----');
+
+const vienas = Math.floor(Math.random() * 3)
+const antras = Math.floor(Math.random() * 3)
+const trecias = Math.floor(Math.random() * 3)
+const ketvirtas = Math.floor(Math.random() * 3)
+
+console.log(vienas, antras,trecias, ketvirtas);
+//Suskaičiuokite kiek yra nulių, vienetų ir dvejetų. Rezultatus atspauzdinkite su console.log()
+
+
    
