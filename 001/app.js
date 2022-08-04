@@ -60,6 +60,31 @@ function getRandomInt(max) {
 console.log('------2-----');
 
 console.log([...Array(3)].map(_ => Math.floor(Math.random() * 25)));
-console.log
+
+
+
+
 //kaip palyginti reiksmes? kaip jas issivesti i const?
+
+console.log('------3-----');
+
+const krastine = Math.floor(Math.random() * 10) + 1;
+const krastine2 = Math.floor(Math.random() * 10) + 1;
+const krastine3 = Math.floor(Math.random() * 10) + 1;
+
+console.log(krastine);
+console.log(krastine2);
+console.log(krastine3);
+
+const skaiciai = [krastine, krastine2, krastine3]
+
+function checkValidity(krastine, krastine2, krastine3)
+{
+    // check condition
+    if (krastine + krastine2 < krastine3 || krastine + krastine3 < krastine2 || krastine2 + krastine3 < krastine)
+        return `Trikampio negalima sudaryti`;
+    else
+        return `Galima sudaryti trikampį`;
+}
+console.log(checkValidity(krastine, krastine2, krastine3));
    
