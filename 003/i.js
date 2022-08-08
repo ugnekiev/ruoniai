@@ -38,7 +38,7 @@ console.log('-----DO WHILE------');
 
 
 
-let saugiklis = 100;
+let saugiklis = 10000;
 
 let kartai = 0;
 
@@ -48,12 +48,17 @@ do {
 
     let iskrito; // tuscia deklaracija
     iskrito = rand(0, 1) ? 'S' : 'H';
-    if('S' == iskrito) {
-        kartai ++;
+    //if('S' == iskrito) {
+    //    kartai ++;
+    //}
+    if('H' == iskrito){
+        kartai++;
+    } else {
+        kartai = 0;
     }
     console.log(iskrito);
 
-} while (kartai != 3); // pirma parasyti ==, po to pakeisti neigini !=
+} while (kartai != 5); // pirma parasyti ==, po to pakeisti neigini !=
 
 console.log('------------------');
 
