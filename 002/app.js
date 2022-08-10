@@ -157,4 +157,56 @@ for (let i = 0; i < random; i++) {
 console.log('------7------'); 
 //Deklaruokite kintamąjį už ciklo ribų. Ciklo viduje generuokite atsitiktinius skaičius funkcija rand(), kurie yra iš intervalo 10…20. Ciklą kartokite 5 kartus;
 
+function rand(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+let saugiklis = 100;
+
+console.log('------C------'); 
+//let skaicius;
+let tarpine = '';
+//skaicius = (rand(10, 20));
+//et kartai = 0;
+
+
+for (let i = 0; i < 5; i++) {
+    tarpine = tarpine + rand(10, 20) + ' ';
+
+}
+    console.log(tarpine);
+
+
+
+
+
+console.log('------A------'); 
+// Ciklo viduje sugeneruotą reikšmę priskirkite kintamajam, kurį sukūrėte už ciklo ribų ir jį atspauzdinkite;
+const naujasSkaicius = skaicius;
+console.log(naujasSkaicius);
+
+console.log('------B------'); 
+//Skaičiuokite ciklo viduje generuojamų reikšmių sumą, ją priskirdami kintamajam, kurį sukūrėte už ciklo ribų. Rezultatą atspauzdinkite pasinaudodami console.log už ciklo ribų;
+
+//Deklaruokite kintamąjį (jeigu reikia kelis kintamuosius) už ciklo ribų. Ciklo viduje generuokite atsitiktinius skaičius funkcija rand(), kurie yra iš intervalo 10…25. Ciklą kartokite tol, kol ciklo viduje bus sugeneruotas skaičius mažesnis nei 12;
+let numberiai;
+numberiai = d;
+numberiai = e;
+
+
+do {
+    if(d <= 12){
+        numberiai;
+    } else {
+        kartai = 0;
+    }
+    
+} while (condition);
+
+
+
+
+
     

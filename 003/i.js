@@ -60,5 +60,6 @@ do {
 
 } while (kartai != 5); // pirma parasyti ==, po to pakeisti neigini !=
 
-console.log('------------------');
+
+
 
