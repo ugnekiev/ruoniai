@@ -13,6 +13,11 @@ const sp = [
 
 //atspausdinti visus vardus
 
-//sp.forEach(el => console.log(el.name, el.color));
+sp.forEach(el => console.log(el.name, el.color));
 
 const map = sp.map(el => el);
+
+
+
+//sukurti masyva is 10 skaiciu kurie parenkami su rand nuo 1 iki 100
+
