@@ -17,7 +17,7 @@ let turiu = 500;
 
 while(turiu <= 1000) {
 
-    turiu = turiu + 100;
+    turiu = turiu;
 
 }
 

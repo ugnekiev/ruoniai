@@ -119,8 +119,12 @@ const masyvas = [1, 2, 3, 4];
 
 //su pradine reiksme
 
-console.log(masyvas.reduce((previousValue, curentValue) => previousValue + curentValue, 100));
+console.log(masyvas.reduce((previousValue, curentValue) => previousValue + curentValue, 100))
 
+
+
+for(let i = 1; i < 5; i++){
+  console.log(i);}
 
 
 
