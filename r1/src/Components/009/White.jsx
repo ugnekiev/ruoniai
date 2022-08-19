@@ -1,6 +1,6 @@
 function White() {
     return (
-       <div className="black">WHITE</div>
+       <div className="white">WHITE</div>
     )
 }
 
