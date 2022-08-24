@@ -1,4 +1,5 @@
 import './App.scss';
+import Dog from './Components/012/Dog';
 
 
 
@@ -6,7 +7,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Props</h1>
+        <h1>State</h1>
+        <Dog color="crimson" />
         
             
        
