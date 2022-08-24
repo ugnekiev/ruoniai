@@ -1,15 +1,18 @@
 import './App.scss';
-import NamuDog from './Components/012/NamuDog';
+import Dog from './Components/012/Dog';
+
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>State ND</h1>
-       <NamuDog 
-       color="crimson"/>
+        <h1>State</h1>
+        <Dog color="crimson" />
         
+            
+       
+
       </header>
     </div>
   );

@@ -34,8 +34,6 @@ function Dog() {
                     
     }
 
-    const show = rand();
-
 
     const doSort = () => {
         setSq(s => [...s].sort((a, b) => a.nr - b.nr));
