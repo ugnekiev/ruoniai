@@ -50,7 +50,20 @@ function NamuDog () {
 
     const add = () => {
         setSqN (s => [...s, ''])
+
     };
+
+    const [skaicius, setSkaicius] = useState(3);
+
+    const mult5 = () => {
+        setSkaicius (skaicius => skaicius * 5)
+
+    }
+
+    const reset = () => {
+        setSkaicius (3);
+
+    }
 
 
     return (
@@ -78,6 +91,10 @@ function NamuDog () {
         </div>
         <button onClick={plius}>+</button>
         <button onClick={minus}>-</button>
+        <button onClick={add}>pridek!</button>
+        
+      
+
 
         <div className="dog-bin">
             {
@@ -85,8 +102,21 @@ function NamuDog () {
             }
         
         </div>
-        <button onClick={add}>pridek!</button>
-    
+        
+           
+                    {
+                        <h1>count: {skaicius}</h1>
+                    }
+                
+                
+                <button onClick={mult5}>M1</button>
+
+                {
+                        <h1>{skaicius}</h1>
+                    }
+                
+                
+                <button onClick={reset}>M2</button>
     </>
     );
     }
