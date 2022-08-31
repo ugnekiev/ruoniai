@@ -1,36 +1,27 @@
-
-import { useEffect } from 'react';
-import { useState } from 'react';
+//import { useEffect } from 'react';
 import './App.scss';
-import Books from './Components/013/Books';
-import axios from 'axios';
+import Animals from './Components/Uzduotis/Animals';
+//import Pokemons from './Components/Uzduotis/Pokemons';
 
-//UZDAVINYS: pasiimti is serverio knygu sarasa ir atvaizduoti knygu pavadinimus kaip sarasa
 
 function App() {
 
-    const [books, setBooks] = useState(null);
-    //tuscias [] reikstu kad mes nieko neturime ir mums gali serveris grazinti tuscia masyva
-    //null reiksia kad mes pradzioje nieko neturime
-
-    useEffect (() => {
-        axios.get('https://in3.dev/knygos/')
-        .then(res => setBooks(res.data))
-        .catch(_ => setBooks('ERROR'))
-
-    }, [])
-
+    
+    
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App1">
         <>
-        <h1>USE EFFECT</h1>
+        <h1>UZDUOTIS</h1>
+            <ol>
+            <Animals />
+            </ol>
 
-        <Books books={books} />
+            <h2>Užduotis su vienu API</h2>
 
+         {/* <Pokemons />  */}
+
+        
         </>
-
-      </header>
     </div>
   );
 }
