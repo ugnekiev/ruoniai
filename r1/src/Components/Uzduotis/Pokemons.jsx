@@ -1,27 +1,37 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import Pokemon from "./Pokemon";
 
 const Pokemons = () => {
 
-    const [pokemons, setPokemons] = useState(null);
+    const [data, setData] = useState([]);
+    const [errorMsg, setErrorMsg] = useState('')
 
-    useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon')
-    .then(response => response.json())
-    .then(
-        (result) => {
-        
-        setPokemons(result.results);
-    },
-        (error) => {
-        
-            console.log(error);
-        }
-    )
-    
-}, []);
-    
+    useEffect (() => {
+        fetch('https://pokeapi.co/api/v2/pokemon')
+        .then((res) => res.json())
+        .then(
+            (result) => {
+                // console.log(result.results);
+                setData(result.results);
 
-    return <> {pokemons.map((p) => p.name)} </>;
+            },
+
+            (error) => {
+                setErrorMsg(error.message);
+
+            }
+        )
+
+    },[])
+       
+    return <ul>
+        {errorMsg ? errorMsg : "nera error'o"}
+        {data.map((pokemon, index) => (
+        <Pokemon key={index} vardas={pokemon.name} urlas={pokemon.url}/>
+    ))}  
+    </ul>
+    ;
     
   };
   
