@@ -92,6 +92,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 20px;
   flex-wrap: wrap;
   .dog {
     width: 130px;
@@ -228,4 +229,12 @@ button {
 .App1 {
   font-family: sans-serif;
   text-align: center;
+}
+
+input {
+  font-size: 30px;
+  outline: none;
+  border: none;
+  padding: 5px;
+  margin: 10px;
 }
