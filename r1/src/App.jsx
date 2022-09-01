@@ -1,82 +1,58 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import './App.scss'
+import { useState } from "react";
+import "./App.scss";
+import rand from './Functions/rand';
+
 function App() {
 
-//mygtukas kuris daro 1, 2, 3, 4, 5, 6....
-    const [count, setCount] = useState(1);
+    const [animals, setAnimals] = useState([]);
 
-    const [read, setRead] = useState(null);
+    const start = () => {
+        setAnimals(a => [...a, ...[...Array(rand(5, 20))].map (() => ({
+            type: rand(0, 1) ? 'cow' : 'sheep',
+            number: ('' + rand(0, 999999)).padStart(7, 0)
 
-    //KONTROLIUOJAMA INPUTAS
-    const [text1, setText1] = useState('');
-
-    const [color, setColor] = useState('#57ac30');
-
-    const [backgr, setBackgr] = useState ('#57ac30');
-
-    const save = () => {
-        localStorage.setItem('number', count);
-        const jobj = JSON.stringify ({cat: 'big'});
-        localStorage.setItem('obj', jobj)
-        
-
+        })).map((a) => ({...a, number: a.type === 'cow' ? 'K' + a.number : 'A' + a.number,
+        side: a.type === 'cow' ? 'left' : 'right'
+    }))]);
     }
 
-    const readNumber = () => {
-        setRead(localStorage.getItem('number'));
-        const obj = JSON.parse(localStorage.getItem('obj'))
-        console.log(obj.cat)
+    const run = number => {
+        setAnimals(s => 
+            [...s.map(a => a.number !== number ? {...a} : {...a, side: a.side === 'left' ? 'right' : 'left'})]
+            .sort((a, b) => {
+                if (a.number === number) {
+                    return 1;
+                }
+                if (b.number === number) {
+                    return -1;
+                }
+                return 0;
+            }
+
+         ))
     }
-    
 
-//kodas, kai READ atsiranda perkrovus puslapi
-    useEffect(() => {
-        setRead(localStorage.getItem('number'));
-        const obj = JSON.parse(localStorage.getItem('obj'));
-        if(null === obj) {
-            console.log('cats gone');
-        } else {
-            console.log(obj.cat);
-        }
-    }, []);
-//kai tik uzsikrauna puslapis nukaito sia reiksme: setRead(localStorage.getItem('number')
-
-
-    useEffect (() => {
-        localStorage.setItem('text', text1);
-
-    }, [text1]);
-
-
-        const changeText1 = (e) => {
-            // console.log('bandau keisti', e.target.value)
-            setText1(e.target.value);
-        }
-//e.target rodo kas ta eventa iskviete
-
-
-    return (
-        <div className="App">
-          <header className="App-header" style={{backgroundColor: backgr}}>
-            <>
-           
-            <h1>Pirmadienis Nr: {count} Nuskaityta Nr: {read}</h1>
-            <div className="dog-bin">
-            <button onClick={() => setCount (c => c + 1)}>+1</button>
-            <button onClick={save}>save</button>
-            <button onClick={readNumber}>read</button>
-            <button onClick={() => setBackgr(color)}>DO BACKGR</button>
-
+  return (
+    <div className="App">
+      <header className="App-header">
+        <>
+          <div className="field">
+            <h1><span>GANYKLA</span><button onClick={start}>I GANYKLA</button></h1>
+            <div className="left">
+                {
+                    animals.map(a => a.side === 'left' ? <div onClick={() => run(a.number)} key={a.number} className={a.type}>{a.number}</div> : null)
+                }
             </div>
+            <div className="right">
+            {
+                    animals.map(a => a.side === 'right' ? <div onClick={() => run(a.number)} key={a.number} className={a.type}>{a.number}</div> : null)
+                }
+            </div>
+          </div>
+        </>
+      </header>
+    </div>
+  );
+}
 
-            <input type="text" value={text1} onChange={changeText1}></input>
-            <input type="color" value={color} onChange={e => setColor(e.target.value)}></input>
-    
-         </>
-          </header>
-        </div>
-      );
-    }
-    
-    export default App;
+export default App;
