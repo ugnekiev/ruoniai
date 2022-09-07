@@ -14,6 +14,8 @@ const [plus, setPlus] = useState('');
 
 const [count, countDispach] = useReducer(countReduser, 10);
 
+const [number, setNumber] = useState(0);
+
 const add1 = () => {
     const action = {
         type: 'add_one'
@@ -24,6 +26,20 @@ const rem1 = () => {
     const action = {
         type: 'remove_one'
     }
+    countDispach(action);
+}
+const addSome = () => {
+    const action = {
+        type: 'add_+',
+        payload: number
+    }
+    countDispach(action);
+}
+const remSome = () => {
+    const action = {
+        type: 'remove_-',
+        payload: number
+        }
     countDispach(action);
 }
 
@@ -46,6 +62,9 @@ const rem1 = () => {
             <Tevelis/> */}
             <button onClick={add1}>+1</button>
             <button onClick={rem1}>-1</button>
+            <input type="number" value={number} onChange={e => setNumber(e.target.value)}></input>
+            <button onClick={addSome}>+</button>
+            <button onClick={remSome}>-</button>
           </div>
           
         </div>

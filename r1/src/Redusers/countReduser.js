@@ -9,6 +9,12 @@ switch (action.type) {
     case 'remove_one':
         stateCopy--;
         break;
+    case 'add_+':
+        stateCopy += parseInt(action.payload);
+        break;
+    case 'remove_-':
+        stateCopy -= parseInt(action.payload);
+        break;
         default:
 }
 
