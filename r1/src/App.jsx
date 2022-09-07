@@ -1,5 +1,6 @@
 import { useReducer } from "react";
 import { useState } from "react";
+import { add, add1, remove, remove1 } from "./Actions";
 import "./App.scss";
 import StarContext from "./Components/019/StartContext";
 import countReduser from "./Redusers/countReduser";
@@ -16,32 +17,33 @@ const [count, countDispach] = useReducer(countReduser, 10);
 
 const [number, setNumber] = useState(0);
 
-const add1 = () => {
-    const action = {
-        type: 'add_one'
-    }
-    countDispach(action);
-}
-const rem1 = () => {
-    const action = {
-        type: 'remove_one'
-    }
-    countDispach(action);
-}
-const addSome = () => {
-    const action = {
-        type: 'add_+',
-        payload: number
-    }
-    countDispach(action);
-}
-const remSome = () => {
-    const action = {
-        type: 'remove_-',
-        payload: number
-        }
-    countDispach(action);
-}
+//COMMENT nes susikurem actions folderi, o jame index.js 
+// const add1 = () => {
+//     const action = {
+//         type: 'add_one'
+//     }
+//     countDispach(action);
+// }
+// const rem1 = () => {
+//     const action = {
+//         type: 'remove_one'
+//     }
+//     countDispach(action);
+// }
+// const addSome = () => {
+//     const action = {
+//         type: 'add_+',
+//         payload: number
+//     }
+//     countDispach(action);
+// }
+// const remSome = () => {
+//     const action = {
+//         type: 'remove_-',
+//         payload: number
+//         }
+//     countDispach(action);
+// }
 
   return (
     <StarContext.Provider value={
@@ -60,11 +62,11 @@ const remSome = () => {
             {/* <button onClick={() => setStar(s => s + '*')}>Make star</button>
             <button onClick={() => setPlus(s => s + '+')}>Make plius</button>
             <Tevelis/> */}
-            <button onClick={add1}>+1</button>
-            <button onClick={rem1}>-1</button>
+            <button onClick={() => countDispach(add1())}>+1</button>
+            <button onClick={() => countDispach(remove1())}>-1</button>
             <input type="number" value={number} onChange={e => setNumber(e.target.value)}></input>
-            <button onClick={addSome}>+</button>
-            <button onClick={remSome}>-</button>
+            <button onClick={() => countDispach(add(number))}>+</button>
+            <button onClick={() => countDispach(remove(number))}>-</button>
           </div>
           
         </div>
