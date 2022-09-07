@@ -313,3 +313,16 @@ input {
     margin: 7px;
   }
 }
+
+.red-sq {
+  border: 3px dotted crimson;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h2 {
+    color: crimson;
+  }
+
+}
