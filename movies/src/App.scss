@@ -3,4 +3,44 @@
 body,
 html {
     font-family: 'Saira Semi Condensed', sans-serif;
+    background-color: whitesmoke;
+}
+
+.movie {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    &__content {
+        display: flex;
+        &__title{
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        &__genre{
+            font-size: 20px;
+            letter-spacing: 1px;
+            margin-right: 10px;
+        }
+        &__year {
+            font-size: 20px;
+            color: cornflowerblue;
+            margin-right: 10px;
+        }
+    }
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        button {
+            margin-left: 5px;
+        }
+    }
+}
+        
+
+.card-header {
+    background-color: cornflowerblue;
+    color: antiquewhite;
 }

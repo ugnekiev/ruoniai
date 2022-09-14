@@ -4,13 +4,21 @@ import "./App.scss";
 import Create from "./Components/Create";
 import DataContext from "./Components/DataContext";
 import List from "./Components/List";
-import { create } from "./Functions/localStorage";
+import { create, read } from "./Functions/localStorage";
 
 const key = "movies";
 
 function App() {
+  const [lastUpdate, setLastUdate] = useState(Date.now());
   const [movies, setMovies] = useState(null);
   const [createData, setCreateData] = useState(null);
+
+  //READ
+
+  useEffect (() => {
+    setMovies(read(key));
+  }, [lastUpdate])
+
 
   //CREATE
   useEffect(() => {
@@ -18,6 +26,7 @@ function App() {
       return;
     }
     create(key, createData);
+    setLastUdate(Date.now())
   }, [createData]);
 
   return (

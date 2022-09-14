@@ -42,7 +42,7 @@ const add = () => {
         </div>
         <div class="mb-3">
           <label className="form-label">Movie Year</label>
-          <input type="number" className="form-control" value={year} onChange={e => setYear(e.target.value)}/>
+          <input type="text" className="form-control" value={year} onChange={e => setYear(e.target.value)}/>
         </div>
         <button onClick={add} type="button" className="btn btn-outline-dark">Add</button>
       </div>

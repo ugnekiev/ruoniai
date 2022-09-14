@@ -326,3 +326,12 @@ input {
   }
 
 }
+
+.square {
+  height: 150px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px #c85000;
+}

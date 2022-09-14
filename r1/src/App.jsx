@@ -1,35 +1,21 @@
 
-import { useEffect } from "react";
-import { useState } from "react";
 import "./App.scss";
-import axios from 'axios';
-
+import Square from "./Components/Square/Square";
 
 
 function App() {
-    const [trees, setTress] = useState([]);
-
-    useEffect(()=> {
-        axios.get('http://localhost:3003/trees/3/?sort=1')
-        .then(res => 
-            {
-                setTress(res.data)
-            })
-    }, []);
-     
+    
 
     return (
     <div className="App-header">
-      <>
+    
         <div>
-          <h1>SERVER</h1>
-          <ul>
-            {
-                trees.map(t=> <li key={t.id}>{t.title}<i></i> {t.height}</li>)
-            }
-          </ul>
+          <h1>Total Recall</h1>
+          <Square color = 'crimson'/>
         </div>
-      </>
+
+        <button onClick={() => console.log("%cBuuu", "color:green; background:red; font-size: 20px")}>BŪŪ</button>
+   
     </div>
 
   );
