@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import genres from "../Data/genres";
+import DataContext from "./DataContext";
 
 function Line({movie}) {
+
+    const{setDeleteData} = useContext(DataContext);
+
     return (
         <li className="list-group-item">
             
@@ -19,7 +24,7 @@ function Line({movie}) {
                 </div>
                 <div className="movie__buttons">
                 <button type="button" class="btn btn-outline-primary">Edit</button>
-                <button type="button" className="btn btn-outline-danger">Delete</button>
+                <button onClick={() => setDeleteData(movie)} type="button" className="btn btn-outline-danger">Delete</button>
                 </div>
             </div>
         </li>

@@ -4,7 +4,7 @@ import "./App.scss";
 import Create from "./Components/Create";
 import DataContext from "./Components/DataContext";
 import List from "./Components/List";
-import { create, read } from "./Functions/localStorage";
+import { create, destroy, read } from "./Functions/localStorage";
 
 const key = "movies";
 
@@ -12,6 +12,8 @@ function App() {
   const [lastUpdate, setLastUdate] = useState(Date.now());
   const [movies, setMovies] = useState(null);
   const [createData, setCreateData] = useState(null);
+  const [deleteData, setDeleteData] = useState(null);
+  
 
   //READ
 
@@ -29,11 +31,21 @@ function App() {
     setLastUdate(Date.now())
   }, [createData]);
 
+  //DELETE
+  useEffect(() => {
+    if (null === deleteData) {
+      return;
+    }
+    destroy(key, deleteData.id);
+    setLastUdate(Date.now())
+  }, [deleteData]);
+
   return (
     <DataContext.Provider
       value={{
         setCreateData,
-        movies
+        movies,
+        setDeleteData
       }}
     >
       <div className="container">
