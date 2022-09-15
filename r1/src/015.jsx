@@ -5,10 +5,6 @@ import rand from './Functions/rand';
 
 function App() {
 
-    const make = 'Ford';
-    const model = 'Mustang';
-    const car = { make, model };
-    console.log(car);
 
     const [animals, setAnimals] = useState(null);
 
