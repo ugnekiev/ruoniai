@@ -6,6 +6,7 @@ function App() {
   const [gyvunai, setGyvunai] = useState([]);
   const [tipas, setTipas] = useState("");
   const [svoris, setSvoris] = useState(0);
+  const [spalva, setSpalva] = useState ('');
 
   useEffect(() => {
     const lokalusSandelys = localStorage.getItem('tvartas')
@@ -19,7 +20,7 @@ function App() {
   const prideti = (e) => {
     e.preventDefault();
     const copyGyvunai = [...gyvunai];
-    copyGyvunai.push({ type: tipas, kg: svoris });
+    copyGyvunai.push({ type: tipas, kg: svoris, color: spalva});
     setGyvunai(copyGyvunai);
 
     localStorage.setItem('tvartas', JSON.stringify(copyGyvunai))
