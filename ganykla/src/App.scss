@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 .App {
   text-align: center;
 }
@@ -8,20 +10,20 @@ html {
 }
 
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+// .App-header {
+//   background-color: #282c34;
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: calc(10px + 2vmin);
+//   color: white;
+// }
 
-.App-link {
-  color: #61dafb;
-}
+// .App-link {
+//   color: #61dafb;
+// }
 
 @keyframes App-logo-spin {
   from {
@@ -39,6 +41,58 @@ html {
   align-items:flex-start;
   justify-content: center;
   position: relative;
-  background-color: greenyellow;
+  background-color: rgb(58, 88, 12);
 
 }
+
+h1 {
+  text-transform:lowercase;
+  text-decoration: underline;
+  font-weight: 300;
+  color: rgb(231, 211, 32);
+  margin-top: 20px;
+  padding-bottom: 40px;
+}
+
+.pavadinimas {
+  font-size: 24px;
+  color: rgb(231, 211, 32);
+}
+
+.card-header {
+  text-transform: uppercase;
+  color: rgb(231, 211, 32);
+}
+
+.movie {
+  display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    &__content {
+        display: flex;
+        &__title{
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        &__type{
+            font-size: 20px;
+            letter-spacing: 1px;
+            margin-right: 10px;
+        }
+        &__color {
+            font-size: 20px;
+            color: rgb(231, 211, 32);
+            margin-right: 10px;
+        }
+    }
+  &__buttons {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      button {
+          margin-left: 5px;
+      }
+  
+}}
