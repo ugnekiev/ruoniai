@@ -48,6 +48,83 @@ app.get("/trees/:tipas", (req, res) => {
 });
 
 
+// app.listen(port, () => {
+//   console.log(`Bebras klauso ${port} porto`)
+// });
+
+// app.get("/trees/:tipas", (req, res) => {
+
+//     // console.log(req.query.sort);
+
+//     const sql = `
+//     SELECT id, type, title, height
+//     FROM trees
+//     WHERE type = ? OR type = ?
+//     `;
+//     con.query(sql, [req.params.tipas, req.query.sort], (err, result) => {
+//         if (err) throw err;
+//         res.send(result);
+//     });
+// });
+
+
+// READ
+app.get("/trees", (req, res) => {
+  const sql = `
+  SELECT id, type, title, height
+  FROM trees
+  `;
+  con.query(sql, (err, result) => {
+      if (err) throw err;
+      res.send(result);
+  });
+});
+
+//CREATE
+// INSERT INTO table_name (column1, column2, column3, ...)
+// VALUES (value1, value2, value3, ...);
+app.post("/trees", (req, res) => {
+  const sql = `
+  INSERT INTO trees (title, height, type)
+  VALUES (?, ?, ?)
+  `;
+  con.query(sql, [req.body.title, req.body.height, req.body.type], (err, result) => {
+      if (err) throw err;
+      res.send(result);
+  });
+
+});
+
+
+//DELETE
+// DELETE FROM table_name WHERE condition;
+app.delete("/trees/:id", (req, res) => {
+  const sql = `
+  DELETE FROM trees
+  WHERE id = ?
+  `;
+  con.query(sql, [req.params.id], (err, result) => {
+      if (err) throw err;
+      res.send(result);
+  });
+});
+
+//EDIT
+// UPDATE table_name
+// SET column1 = value1, column2 = value2, ...
+// WHERE condition;
+app.put("/trees/:id", (req, res) => {
+  const sql = `
+  UPDATE trees
+  SET title = ?, height = ?, type = ?
+  WHERE id = ?
+  `;
+  con.query(sql, [req.body.title, req.body.height, req.body.type, req.params.id], (err, result) => {
+      if (err) throw err;
+      res.send(result);
+  });
+});
+
 app.listen(port, () => {
-  console.log(`Bebras klauso ${port} porto`)
+  console.log(`Bebras klauso ${port} porto!`)
 });

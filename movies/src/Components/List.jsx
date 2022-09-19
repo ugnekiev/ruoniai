@@ -3,6 +3,7 @@ import DataContext from "./DataContext";
 import Line from "./Line";
 
 function List() {
+
     const {movies} = useContext(DataContext);
   return (
     <div className="card m-4">

@@ -1,39 +1,85 @@
 
-import "./App.scss";
-import ButtonsGroup from "./Components/ButtonsGroup/ButtonsGroup";
-import Square from "./Components/Square/Square";
-import { useState } from "react";
 import { useEffect } from "react";
-import randColor from "./Functions/randColor";
+import { useState } from "react";
+import "./App.scss";
+import axios from 'axios';
+import List from "./Components/023/List";
+import TreesProvider from "./Components/023/TreesProvider";
+import Create from "./Components/023/Create";
+import Edit from "./Components/023/Edit";
 
+const types = [
+  {id: 1, type: "Lapuotis"},
+  {id: 2, type: "Spygliuotis"},
+  {id: 3, type: "Vaiskrumis"}
+]
 
 
 function App() {
 
-  const [number, setNumber] = useState(0);
-  const [color, setColor] = useState(null);
+  const [trees, setTrees] = useState([]);
+    const [lastUpdate, setLastUpdate] = useState(Date.now());
+    const [createData, setCreateData] = useState(null);
+    const [deleteData, setDeleteData] = useState(null);
+    const [modalData, setModalData] = useState(null);
+    const [editData, setEditData] = useState(null);
+
+    useEffect(() => {
+        axios.get('http://localhost:3003/trees')
+            .then(res => {
+                setTrees(res.data);
+            })
+    }, [lastUpdate]);
+
+    useEffect(() => {
+        if (null === createData) {
+            return;
+        }
+        axios.post('http://localhost:3003/trees', createData)
+        .then(res => {
+            setLastUpdate(Date.now());
+        });
+    }, [createData]);
+   
+    useEffect(() => {
+      if (null === deleteData) {
+          return;
+      }
+      axios.delete('http://localhost:3003/trees/' + deleteData.id)
+      .then(res => {
+          setLastUpdate(Date.now());
+      });
+  }, [deleteData]);
 
   useEffect(() => {
-      setColor(randColor());
-  }, [number]);
+      if (null === editData) {
+          return;
+      }
+      axios.put('http://localhost:3003/trees/' + editData.id, editData)
+      .then(res => {
+          setLastUpdate(Date.now());
+      });
+  }, [editData]);
+     
 
     return (
-    <div className="App-header">
-    
-        <div>
-          <h1>Total Recall</h1>
-          
-          <Square color = 'crimson'/>
-          <h2 style={{color: color}}>{number}</h2>
-          <ButtonsGroup setNumber={setNumber} t={0} c={100}/>
-          <ButtonsGroup setNumber={setNumber} t={100} c={20} />
-          <ButtonsGroup setNumber={setNumber} t={120}  c={5}/>
-        </div>
-
-        
-   
-    </div>
-
+      <TreesProvider.Provider value={{
+          trees,
+          types,
+          setCreateData,
+          setDeleteData,
+          modalData,
+          setModalData,
+          setEditData
+      }}>
+          <div className="App">
+              <header className="App-header">
+                  <Create />
+                  <List />
+              </header>
+          </div>
+          <Edit />
+      </TreesProvider.Provider>
   );
 }
 
