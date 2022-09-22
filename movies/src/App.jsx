@@ -5,7 +5,10 @@ import Create from "./Components/Create";
 import DataContext from "./Components/DataContext";
 import Edit from "./Components/Edit";
 import List from "./Components/List";
-import { create, destroy, read } from "./Functions/localStorage";
+import Messages from "./Components/Messages";
+import { create, destroy, read, update } from "./Functions/localStorage";
+import { v4 as uuidv4 } from 'uuid';
+import Delete from "./Components/Delete";
 
 const key = "movies";
 
@@ -15,6 +18,9 @@ function App() {
   const [createData, setCreateData] = useState(null);
   const [deleteData, setDeleteData] = useState(null);
   const [modalData, setModalData] = useState(null);
+  const [modalDelData, setModalDelData] = useState(null);
+  const [editData, setEditData] = useState(null);
+  const [msgs, setMsgs] = useState([]);
   
 
   //READ
@@ -30,6 +36,7 @@ function App() {
       return;
     }
     create(key, createData);
+    makeMsg('oh, new movie ('+createData.title+')is here!')
     setLastUdate(Date.now())
   }, [createData]);
 
@@ -39,8 +46,33 @@ function App() {
       return;
     }
     destroy(key, deleteData.id);
+    makeMsg('your movie ('+deleteData.title+')is gone!')
     setLastUdate(Date.now())
   }, [deleteData]);
+
+
+  //EDIT
+  useEffect(() => {
+    if (null === editData) {
+      return;
+    }
+    update(key, editData, editData.id);
+    setLastUdate(Date.now())
+  }, [editData]);
+
+  //MSG konstravimas
+
+  const makeMsg = text => {
+    const msg = {
+      id: uuidv4(),
+      text
+    }
+    setMsgs(m => [...m, msg])
+    setTimeout(() => {
+      setMsgs(m => m.filter(mes => mes.id !== msg.id));
+    }, 6000);
+
+  }
 
   return (
     <DataContext.Provider
@@ -49,7 +81,12 @@ function App() {
         movies,
         setDeleteData,
         modalData,
-        setModalData
+        setModalData,
+        setEditData,
+        msgs, 
+        setMsgs,
+        modalDelData, 
+        setModalDelData
       }}
     >
       <div className="container">
@@ -63,6 +100,8 @@ function App() {
         </div>
       </div>
       <Edit />
+      <Messages />
+      <Delete />
     </DataContext.Provider>
   );
 }

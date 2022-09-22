@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 function List() {
 
-    const {setDeleteData, gyvunai} = useContext(DataContext);
+    const {setDeleteData, gyvunai, setModalData} = useContext(DataContext);
 
     
 
@@ -23,8 +23,8 @@ function List() {
                       <div className="movie__content__color"> {gyvunas.color}</div>
                     </div>
                   <div className="movie__buttons">
-                  <button type="button" className="button btn btn-outline-warning">Edit</button>
-                  <button onClick={() => setDeleteData(i)}type="button" className="button btn btn-outline-danger">Delete</button>
+                  <button type="button" className="button btn btn-outline-warning" onClick={()=> setModalData({...gyvunas, i})}>Edit</button>
+                  <button type="button" className="button btn btn-outline-danger" onClick={() => setDeleteData(i)}>Delete</button>
                   </div>
                   </div>
                   </li>

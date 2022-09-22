@@ -49,3 +49,13 @@ html {
     display: block;
     background-color: #a9a9a96f;
 }
+
+.msg-bin {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    .toast {
+        display: block;
+        margin: 10px;
+    }
+}

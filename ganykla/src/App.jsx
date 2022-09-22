@@ -10,6 +10,7 @@ function App() {
   const [gyvunai, setGyvunai] = useState([]);
   const [deleteData, setDeleteData] = useState(null);
   const [modalData, setModalData] = useState(null);
+  const [editData, setEditData] = useState(null);
 
   useEffect(() => {
     const lokalusSandelys = localStorage.getItem("tvartas");
@@ -19,7 +20,8 @@ function App() {
       setGyvunai(JSON.parse(lokalusSandelys));
     }
   }, []);
-  function destroy (key, id) {
+
+    function destroy (key, id) {
     const lokalusSandelys = JSON.parse(localStorage.getItem(key)).filter((row, i) => i !== id)
     console.log(lokalusSandelys, id)
   
@@ -39,6 +41,33 @@ function App() {
   
   }, [deleteData]);
 
+  
+
+  function edit (key, editData) {
+    const copyGyvunai = [...gyvunai]
+    copyGyvunai[editData.i]= {type: editData.tipas, kg: editData.svoris, color: copyGyvunai[editData.i].color, update: true}
+console.log(copyGyvunai)
+
+    // const lokalusSandelys = JSON.parse(localStorage.getItem(key)).filter((row, i) => i !== id)
+    // console.log(lokalusSandelys, id)
+  
+    setGyvunai(copyGyvunai);
+        
+    localStorage.setItem(key, JSON.stringify(copyGyvunai));
+
+}
+
+
+  useEffect(() => {
+    
+    if (null === editData) {
+      return;
+    }
+    edit("tvartas", editData);
+    setDeleteData(null)
+  
+  }, [editData]);
+
 
 
   return (
@@ -47,7 +76,8 @@ function App() {
       gyvunai,
       setDeleteData,
       modalData,
-      setModalData
+      setModalData,
+      setEditData
     }} >
      
     <div className="App">
@@ -59,7 +89,6 @@ function App() {
             <Create />
             <List />
 
-                
               </div>
           </div>
           </div>

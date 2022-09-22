@@ -67,6 +67,25 @@ app.get("/trees/:tipas", (req, res) => {
 //     });
 // });
 
+//INNER JOIN
+
+app.get("/get-it/inner-join", (req, res) => {
+  const sql = `
+  SELECT *
+  FROM clients AS c
+  INNER JOIN phones AS p
+  ON c.id = p.clients_id 
+  `;
+  con.query(sql, (err, result) => {
+      if (err) throw err;
+      res.send(result);
+  });
+});
+// SELECT column_name(s)
+// FROM table1
+// INNER JOIN table2
+// ON table1.column_name = table2.column_name;
+
 
 // READ
 app.get("/trees", (req, res) => {

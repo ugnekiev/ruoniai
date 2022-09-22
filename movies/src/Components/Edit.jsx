@@ -2,20 +2,54 @@ import genres from '../Data/genres';
 import { useState } from 'react';
 import { useContext } from 'react';
 import DataContext from './DataContext';
+import { useEffect } from 'react';
 
 
 
 function Edit() {
 
-    const {modalData, setModalData} = useContext(DataContext);
+    const {modalData, setModalData, setEditData} = useContext(DataContext);
 
     const [title, setTitle] = useState ('');
     const [genre, setGenre] = useState ('0');
     const [year, setYear] = useState ('');
+
+    const save = () => {
+      setEditData({
+        title,
+        genre: parseInt(genre),
+        year,
+        id: modalData.id
+
+      })
+      //kad po save uzsidarytu modalas
+      setModalData(null); 
+    }
+
+
+    useEffect (() => {
+      if (null === modalData) {
+        return;
+    }
+      setTitle(modalData.title);
+      setGenre(modalData.genre);
+      setYear(modalData.year);
+
+    }, [modalData])
    
 
     if (null === modalData) {
         return null;
+    }
+
+    const doYear = e => {
+      let y = parseInt(e.target.value);
+      if (isNaN(y)) {
+        setYear ('');
+    
+      }else {
+        setYear(Math.min(y, 2022));
+      }
     }
 
   return (
@@ -47,14 +81,14 @@ function Edit() {
         </div>
         <div class="mb-3">
           <label className="form-label">Movie Year</label>
-          <input type="text" className="form-control" value={year} onChange={e => setYear(e.target.value)}/>
+          <input type="text" className="form-control" value={year} onChange={doYear}/>
         </div>
       </div>
     </div>
           </div>
           <div class="modal-footer">
             <button onClick={() => setModalData(null)} type="button" className="btn btn-secondary">Close</button>
-            <button type="button" className="btn btn-primary">Save changes</button>
+            <button onClick={save} type="button" className="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
